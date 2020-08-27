@@ -1,8 +1,10 @@
-package web.model;
+package web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import web.dao.CustomerRepository;
+import web.model.Customer;
 
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
 public class CustomerService {
     @Autowired
     CustomerRepository repo;
+
     public void save(Customer customer) {
         repo.save(customer);
     }
@@ -27,7 +30,5 @@ public class CustomerService {
         repo.deleteById(id);
     }
 
-    public List<Customer> search(String keyword) {
-        return repo.search(keyword);
-    }
+
 }

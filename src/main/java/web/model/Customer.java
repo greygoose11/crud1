@@ -10,16 +10,16 @@ public class Customer {
     private long id;
 
     private String name;
-    private String email;
-    private String address;
+    private String lastName;
+    private int age;
 
-    protected Customer() {
+    public Customer() {
     }
 
-    protected Customer(String name, String email, String address) {
+    protected Customer(String name, String lastName, int age) {
         this.name = name;
-        this.email = email;
-        this.address = address;
+        this.lastName = lastName;
+        this.age = age;
     }
 
     public long getId() {
@@ -38,19 +38,19 @@ public class Customer {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getAddress() {
-        return address;
+    public int getAge() {
+        return age;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAge(int age) {
+        this.age = age;
     }
 }

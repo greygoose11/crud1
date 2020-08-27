@@ -1,4 +1,4 @@
-package web.model;
+package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import web.model.Customer;
+import web.service.CustomerService;
 
 import java.util.List;
 import java.util.Map;
@@ -19,9 +21,9 @@ public class CustomerController {
 
     @RequestMapping("/")
     public ModelAndView home() {
-        List<Customer> listCustomer = customerService.listAll();
-        ModelAndView mav = new ModelAndView("index");
-        mav.addObject("listCustomer", listCustomer);
+//        List<Customer> listCustomer = customerService.listAll();
+        ModelAndView mav = new ModelAndView("index1");
+        mav.addObject("listCustomer", customerService.listAll());
         return mav;
     }
     @RequestMapping("/new")
@@ -48,14 +50,14 @@ public class CustomerController {
         customerService.delete(id);
         return "redirect:/";
     }
-    @RequestMapping("/search")
-    public ModelAndView search(@RequestParam String keyword) {
-        List<Customer> result = customerService.search(keyword);
-        ModelAndView mav = new ModelAndView("search");
-        mav.addObject("result", result);
-
-        return mav;
-    }
+//    @RequestMapping("/search")
+//    public ModelAndView search(@RequestParam String keyword) {
+//        List<Customer> result = customerService.search(keyword);
+//        ModelAndView mav = new ModelAndView("search");
+//        mav.addObject("result", result);
+//
+//        return mav;
+//    }
 
 
 }

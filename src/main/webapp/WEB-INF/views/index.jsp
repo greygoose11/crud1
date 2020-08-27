@@ -20,16 +20,16 @@ Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>E-mail</th>
-            <th>Address</th>
+            <th>Last Name</th>
+            <th>Age</th>
             <th>Action</th>
         </tr>
         <c:forEach items="${listCustomer}" var="customer">
             <tr>
                 <td>${customer.id}</td>
                 <td>${customer.name}</td>
-                <td>${customer.email}</td>
-                <td>${customer.address}</td>
+                <td>${customer.lastName}</td>
+                <td>${customer.age}</td>
                 <td>
                     <a href="/edit?id=${customer.id}">Edit</a>
 
