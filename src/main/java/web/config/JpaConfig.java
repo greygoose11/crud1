@@ -22,8 +22,8 @@ import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = "web")
-@EnableJpaRepositories(basePackages = "web.dao")
 @EnableTransactionManagement
+@EnableJpaRepositories(basePackages = "web.dao")
 @PropertySource(value = "classpath:db.properties")
 public class JpaConfig {
     @Autowired
@@ -47,7 +47,7 @@ public class JpaConfig {
         return properties;
     }
 
-    @Bean
+    @Bean(name = "entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean getEntityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());

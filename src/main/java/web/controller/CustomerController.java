@@ -18,37 +18,41 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+    @RequestMapping(value = "/")
+    public String home(){
+        return "redirect:/customers";
+    }
 
-    @RequestMapping("/")
-    public ModelAndView home() {
-//        List<Customer> listCustomer = customerService.listAll();
-        ModelAndView mav = new ModelAndView("index1");
+    @RequestMapping(value = "/customers", method = RequestMethod.GET)
+    public ModelAndView listCustomers() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("index1");
         mav.addObject("listCustomer", customerService.listAll());
         return mav;
     }
-    @RequestMapping("/new")
-    public String newCustomerForm(Map<String, Object> model) {
-        Customer customer = new Customer();
-        model.put("customer", customer);
-        return "new_customer";
-    }
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveCustomer(@ModelAttribute("customer") Customer customer) {
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addCustomer(@ModelAttribute("customer") Customer customer) {
         customerService.save(customer);
-        return "redirect:/";
+        return "redirect:/customers";
     }
-    @RequestMapping("/edit")
+    @RequestMapping(value = "/delete{id}")
+    public String removeCustomer(@ModelAttribute("id") long id) {
+        customerService.delete(id);
+        return "redirect:/customers";
+    }
+    @RequestMapping("/edit{id}")
     public ModelAndView editCustomerForm(@RequestParam long id) {
-        ModelAndView mav = new ModelAndView("edit_customer");
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("edit_customer");
         Customer customer = customerService.get(id);
         mav.addObject("customer", customer);
 
         return mav;
     }
-    @RequestMapping("/delete")
-    public String deleteCustomerForm(@RequestParam long id) {
-        customerService.delete(id);
-        return "redirect:/";
+    @RequestMapping("/edit")
+    public String deleteCustomerForm(@ModelAttribute("customer") Customer customer) {
+        customerService.save(customer);
+        return "redirect:/customers";
     }
 //    @RequestMapping("/search")
 //    public ModelAndView search(@RequestParam String keyword) {
